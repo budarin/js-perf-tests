@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/lodash@latest/lodash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/platform-js@latest/dist/js/platform.vue.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/benchmark@latest/benchmark.min.js"></script>
+
+        <script>
+            globalThis.benchmarks = [];
+        </script>
+
+        <style>
+            body {
+                font-size: 100%;
+                font-family: monospace;
+            }
+
+            code {
+                line-height: 1.5;
+            }
+
+            h2,
+            h3 {
+                color: blue;
+            }
+
+            h3 {
+                margin-block-end: 0em;
+            }
+
+            .summary {
+                margin-top: 0.5em;
+                border-top: 1px black solid;
+                display: inline-block;
+                padding-top: 0.5em;
+            }
+        </style>
+        <title>Benchmark</title>
+    </head>
+
+    <body>
+        <h2>running benchmark, it will take some minutes, please wait ...</h2>
+
+        <code id="code"></code>
+
+        <!-- Numbers -->
+        <script src="/tests/Numbers/Number.parseFloat.js"></script>
+        <script src="/tests/Numbers/Number.parseInt.js"></script>
+
+        <!-- Object -->
+        <script src="/tests/Object/Object expression with spread.js"></script>
+        <script src="/tests/Object/Object.entries.filter.map.join.js"></script>
+        <script src="/tests/Object/Object.entries.forEach.js"></script>
+        <script src="/tests/Object/Object.entries.map.js"></script>
+        <script src="/tests/Object/Object.entries.reduce.js"></script>
+        <script src="/tests/Object/Object.keys.filter.js"></script>
+        <script src="/tests/Object/Object.keys.filter.reduce.js"></script>
+        <script src="/tests/Object/Object.keys.find.js"></script>
+        <script src="/tests/Object/Object.keys.forEach.js"></script>
+        <script src="/tests/Object/Object.keys.join.js"></script>
+        <script src="/tests/Object/Object.keys.length as boolean.js"></script>
+        <script src="/tests/Object/Object.keys.length.js"></script>
+        <script src="/tests/Object/Object.keys.map.filter.join.js"></script>
+        <script src="/tests/Object/Object.keys.map.join.js"></script>
+        <script src="/tests/Object/Object.keys.reduce.js"></script>
+        <script src="/tests/Object/Object.keys[0].js"></script>
+        <script src="/tests/Object/Object.values[0].js"></script>
+
+        <!-- String -->
+        <script src="/tests/String/String.slice.js"></script>
+
+        <!-- Array -->
+        <script src="/tests/Array/Array destructuring.js"></script>
+        <script src="/tests/Array/Array expression with spread.js"></script>
+        <script src="/tests/Array/Array.filter.forEach.js"></script>
+        <script src="/tests/Array/Array.filter.join.js"></script>
+        <script src="/tests/Array/Array.filter.join.trim.js"></script>
+        <script src="/tests/Array/Array.filter.length as boolean.js"></script>
+        <script src="/tests/Array/Array.filter.length.js"></script>
+        <script src="/tests/Array/Array.filter.map.join.js"></script>
+        <script src="/tests/Array/Array.filter.map.join.trim.js"></script>
+        <script src="/tests/Array/Array.filter.map.js"></script>
+        <script src="/tests/Array/Array.filter.reduce.js"></script>
+        <script src="/tests/Array/Array.indexOf as boolean.js"></script>
+        <script src="/tests/Array/Array.join unfold.js"></script>
+        <script src="/tests/Array/Array.join.js"></script>
+        <script src="/tests/Array/Array.join.trim.js"></script>
+        <script src="/tests/Array/Array.map unfold.js"></script>
+        <script src="/tests/Array/Array.map.filter.join.js"></script>
+        <script src="/tests/Array/Array.map.filter.join.trim.js"></script>
+        <script src="/tests/Array/Array.map.filter.js"></script>
+        <script src="/tests/Array/Array.map.forEach.js"></script>
+        <script src="/tests/Array/Array.map.join unfold.js"></script>
+        <script src="/tests/Array/Array.map.join.js"></script>
+        <script src="/tests/Array/Array.map.join.trim.js"></script>
+        <script src="/tests/Array/Array.map.js"></script>
+        <script src="/tests/Array/Array.map.reduce.js"></script>
+        <script src="/tests/Array/Array.slice.every.js"></script>
+        <script src="/tests/Array/Array.slice.map.join.js"></script>
+
+        <script src="index.js"></script>
+    </body>
+</html>

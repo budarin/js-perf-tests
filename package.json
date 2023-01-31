@@ -1,0 +1,22 @@
+{
+  "name": "js-perf-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/budarin/js-perf-tests.git",
+  "author": "Vadim Budarin <budarin-vv@yandex.ru>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "chalk": "4.1.2",
+    "prettier": "^2.8.3",
+    "ua-parser-js": "^1.0.33",
+    "zx": "^7.1.1"
+  },
+  "scripts": {
+    "run-tests-collection-server": "node ./benchmark/benchmarksCollectionServer.js",
+    "stop-tests-collection-server": "sh ./scripts/stop-tests-collection-server.sh",
+    "node-bencmark": "sh ./scripts/node-benchmark.sh",
+    "browser-bencmark": "sh ./scripts/browser-benchmark.sh"
+  }
+}
