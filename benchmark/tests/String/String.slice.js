@@ -3,6 +3,7 @@ globalThis.benchmarks.push(() => {
         supercategory: 'String',
         category: `Strings.slice vs String.substring`,
         expected: 'substring',
+
         options: {
             setup: () => {
                 res = '';
@@ -18,6 +19,9 @@ globalThis.benchmarks.push(() => {
                     "worker-src 'self';" +
                     "style-src 'self' 'unsafe-inline';" +
                     'report-uri csp-report;';
+            },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
             },
         },
 

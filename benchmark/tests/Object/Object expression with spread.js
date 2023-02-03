@@ -1,5 +1,10 @@
 function exportBench() {
     return {
+        supercategory: 'Object',
+        category: 'Object expression with spread vs Object.assign',
+        subcategory: `big object`,
+        expected: 'Object.assign',
+
         options: {
             setup: () => {
                 let res = null;
@@ -104,12 +109,11 @@ function exportBench() {
                     },
                 };
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object expression with spread vs Object.assign',
-        subcategory: `big object`,
-        expected: 'Object.assign',
         tests: [
             {
                 title: 'Object expression with spread ',
@@ -131,17 +135,21 @@ globalThis.benchmarks.push(exportBench);
 
 function exportBench1() {
     return {
+        supercategory: 'Object',
+        category: 'Object expression with spread vs Object.assign',
+        subcategory: `small object`,
+        expected: 'Object.assign',
+
         options: {
             setup: () => {
                 let res = null;
                 const smallObj = { a: 1, b: '2' };
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object expression with spread vs Object.assign',
-        subcategory: `small object`,
-        expected: 'Object.assign',
         tests: [
             {
                 title: 'Object expression with spread ',

@@ -20,6 +20,7 @@ function mapFilterHelper(arrayObject, mapPredicate, filterPredicate) {
             category: `Array.map.filter vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -30,6 +31,9 @@ function mapFilterHelper(arrayObject, mapPredicate, filterPredicate) {
 
                     ${mapFilterHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             tests: [

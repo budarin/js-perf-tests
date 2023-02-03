@@ -16,6 +16,7 @@ function mapReduceJoinHelper(arrayObject, mapPredicate, reducePredicate, initial
             category: `Array.map.reduce vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -27,6 +28,9 @@ function mapReduceJoinHelper(arrayObject, mapPredicate, reducePredicate, initial
 
                     ${mapReduceJoinHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             tests: [

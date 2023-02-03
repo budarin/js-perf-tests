@@ -1,17 +1,11 @@
-function filterHasItemsHelper(arrayObject, filterPredicate) {
-    const len = arrayObject.length;
-
-    for (let i = 0; i < len; i++) {
-        if (filterPredicate(arrayObject[i], i)) {
-            return true;
-        }
-    }
-    return false;
-}
-
-[10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
+[100, 50, 10, 3].forEach((arraySize) => {
     globalThis.benchmarks.push(() => {
         return {
+            supercategory: 'Array',
+            category: `Array.filter.length as boolean vs plugin`,
+            subcategory: `array[${arraySize}]`,
+            expected: 'some',
+
             options: {
                 setup: eval(`() => {
                     let res = false;
@@ -21,15 +15,12 @@ function filterHasItemsHelper(arrayObject, filterPredicate) {
                         arr[i] = i;
                     }
 
-                    ${filterHasItemsHelper.toString()}
-                    
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
-            supercategory: 'Array',
-            category: `Array.filter.length as boolean vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
             tests: [
                 {
                     title: 'filter.length > 0 ',
@@ -38,11 +29,9 @@ function filterHasItemsHelper(arrayObject, filterPredicate) {
                     },
                 },
                 {
-                    title: 'plugin            ',
+                    title: 'some              ',
                     fn: function () {
-                        res = filterHasItemsHelper(arr, function (x, i) {
-                            return x > 0;
-                        });
+                        res = arr.some((x) => x > 0).length > 0;
                     },
                 },
             ],

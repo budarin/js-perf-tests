@@ -4,9 +4,13 @@ globalThis.benchmarks.push(() => {
         category: `Array.join unfolded vs folded array`,
         subcategory: 'string array',
         expected: 'unfolded array',
+
         options: {
             setup: () => {
                 res = '';
+            },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
             },
         },
 
@@ -96,6 +100,7 @@ globalThis.benchmarks.push(() => {
         category: `Array.join unfolded vs folded array`,
         subcategory: 'mixed array',
         expected: 'unfolded array',
+
         options: {
             setup: () => {
                 res = '';
@@ -105,6 +110,9 @@ globalThis.benchmarks.push(() => {
                 const s13 = "object-src 'none';";
                 const s14 = "connect-src 'self';";
                 const s15 = "media-src 'self';";
+            },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
             },
         },
 

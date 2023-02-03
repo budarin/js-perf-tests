@@ -18,6 +18,7 @@ function mapJoinHelper(arrayObject, mapPredicate, separator = ',') {
             category: `Array.map.join vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -29,6 +30,9 @@ function mapJoinHelper(arrayObject, mapPredicate, separator = ',') {
 
                     ${mapJoinHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             tests: [

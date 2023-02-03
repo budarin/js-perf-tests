@@ -1,14 +1,19 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Array',
+        category: 'Array destructuring vs access as props',
+        expected: 'access as props',
+
         options: {
             setup: eval(`() => {
                 let res = [];
                 const foo = ['one', 'two', 'three'];
             }`),
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
-        supercategory: 'Array',
-        category: 'Array destructuring vs access as props',
-        expected: 'access as props',
+
         tests: [
             {
                 title: 'array destructuring ',

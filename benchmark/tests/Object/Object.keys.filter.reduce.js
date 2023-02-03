@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.reduce vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -66,12 +71,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.reduce vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.reduce ',
@@ -98,6 +102,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.reduce vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -126,12 +135,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.reduce vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.reduce ',

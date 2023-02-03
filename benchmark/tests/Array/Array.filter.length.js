@@ -13,6 +13,11 @@ function filterLengthHelper(arrayObject, filterPredicate) {
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
     globalThis.benchmarks.push(() => {
         return {
+            supercategory: 'Array',
+            category: `Array.filter.length vs plugin`,
+            subcategory: `array[${arraySize}]`,
+            expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = 0;
@@ -25,12 +30,11 @@ function filterLengthHelper(arrayObject, filterPredicate) {
                     ${filterLengthHelper.toString()}
                     
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
-            supercategory: 'Array',
-            category: `Array.filter.length vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
             tests: [
                 {
                     title: 'Array.filter.length ',

@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.forEach vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = 0;
@@ -59,12 +64,11 @@ globalThis.benchmarks.push(() => {
                     }
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.forEach vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.forEach ',
@@ -88,6 +92,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.forEach vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = 0;
@@ -111,12 +120,11 @@ globalThis.benchmarks.push(() => {
                     }
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.forEach vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.forEach ',

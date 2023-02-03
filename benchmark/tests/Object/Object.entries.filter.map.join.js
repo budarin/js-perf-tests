@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.entries.filter.map.join vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -57,7 +62,7 @@ globalThis.benchmarks.push(() => {
                         if (Object.hasOwnProperty.call(obj, key)) {
                             const entry = [key, obj[key]];
 
-                            if (filterPredicate([key, obj[key]], i)) {
+                            if (filterPredicate(entry, i)) {
                                 if (foundCount > 0) {
                                     result = result + separator + String(mapPredicate(entry, foundCount));
                                 } else {
@@ -72,12 +77,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.entries.filter.map.join vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.entries.filter.map.join ',
@@ -105,6 +109,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.entries.filter.map.join vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -139,12 +148,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.entries.filter.map.join vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.entries.filter.map.join ',

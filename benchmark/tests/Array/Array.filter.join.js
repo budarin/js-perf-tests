@@ -1,16 +1,16 @@
 function filterJoinHelper(arrayObject, filterPredicate, separator = ',') {
     let result = '',
-        foundCount = 0,
-        foundItem;
+        foundCount = 0;
     const len = arrayObject.length;
 
     for (let i = 0; i < len; i++) {
-        foundItem = filterPredicate(arrayObject[i], i) && arrayObject[i];
-        if (foundItem) {
+        const item = arrayObject[i];
+
+        if (filterPredicate(item, i)) {
             if (foundCount > 0) {
-                result = result + separator + String(foundItem);
+                result = result + separator + String(item);
             } else {
-                result = String(foundItem);
+                result = String(item);
             }
             foundCount++;
         }
@@ -21,6 +21,11 @@ function filterJoinHelper(arrayObject, filterPredicate, separator = ',') {
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
     globalThis.benchmarks.push(() => {
         return {
+            supercategory: 'Array',
+            category: `Array.filter.join vs plugin`,
+            subcategory: `array[${arraySize}]`,
+            expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -33,12 +38,11 @@ function filterJoinHelper(arrayObject, filterPredicate, separator = ',') {
                     ${filterJoinHelper.toString()}
                     
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
-            supercategory: 'Array',
-            category: `Array.filter.join vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
             tests: [
                 {
                     title: 'Array.filter.join ',

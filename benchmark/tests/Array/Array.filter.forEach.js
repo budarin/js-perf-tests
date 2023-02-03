@@ -15,6 +15,11 @@ function filterForEachHelper(array, filterPredicate, forEachPredicate) {
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
     globalThis.benchmarks.push(() => {
         return {
+            supercategory: 'Array',
+            category: `Array.filter.forEach vs plugin`,
+            subcategory: `array[${arraySize}]`,
+            expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = 0;
@@ -26,12 +31,11 @@ function filterForEachHelper(array, filterPredicate, forEachPredicate) {
 
                     ${filterForEachHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
-            supercategory: 'Array',
-            category: `Array.filter.forEach vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
             tests: [
                 {
                     title: 'Array.filter.forEach ',

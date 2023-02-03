@@ -26,6 +26,7 @@ function sliceEveryHelper(arrayObject, start = 0, end = arrayObject.length, ever
             category: `Array.slice.every vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -38,6 +39,9 @@ function sliceEveryHelper(arrayObject, start = 0, end = arrayObject.length, ever
 
                     ${sliceEveryHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             tests: [

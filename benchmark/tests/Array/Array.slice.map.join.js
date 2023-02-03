@@ -28,6 +28,7 @@ function sliceMapJoinHelper(arrayObject, start = 0, end = arrayObject.length, ma
             category: `Array.slice.map.join vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = '';
@@ -40,6 +41,9 @@ function sliceMapJoinHelper(arrayObject, start = 0, end = arrayObject.length, ma
 
                     ${sliceMapJoinHelper.toString()}
                 }`),
+            },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
             },
 
             tests: [

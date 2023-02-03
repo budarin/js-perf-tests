@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.length as boolean vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -56,12 +61,11 @@ globalThis.benchmarks.push(() => {
                     return false;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.length as boolean vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.length ',
@@ -81,6 +85,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.length as boolean vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -99,12 +108,11 @@ globalThis.benchmarks.push(() => {
                     return false;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.length as boolean vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.length ',
@@ -113,7 +121,7 @@ globalThis.benchmarks.push(() => {
                 },
             },
             {
-                title: 'plugin                  ',
+                title: 'plugin             ',
                 fn: function () {
                     res = objectHasOwnKeys(smallObj);
                 },

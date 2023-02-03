@@ -22,6 +22,7 @@ function filterReduceHelper(arrayObject, filterPredicate, reducePredicate, initi
             category: `Array.filter.reduce vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             options: {
                 setup: eval(`() => {
                     let res = 0;
@@ -33,6 +34,9 @@ function filterReduceHelper(arrayObject, filterPredicate, reducePredicate, initi
 
                     ${filterReduceHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             tests: [

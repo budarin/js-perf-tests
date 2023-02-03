@@ -21,12 +21,16 @@ function mapForEachHelper(array, mapPredicate, forEacPredicate) {
 
                     ${mapForEachHelper.toString()}
                 }`),
+                teardown: () => {
+                    if (Math.random() > 1) console.log(res);
+                },
             },
 
             supercategory: 'Array',
             category: `Array.map.forEach vs plugin`,
             subcategory: `array[${arraySize}]`,
             expected: 'plugin',
+
             tests: [
                 {
                     title: 'Array.map.forEach',

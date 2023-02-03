@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.map.filter.join vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -57,7 +62,7 @@ globalThis.benchmarks.push(() => {
                             const item = mapPredicate(key, i);
 
                             if (filterPredicate(item)) {
-                                if (result) {
+                                if (result.length > 0) {
                                     result = result + separator + String(item);
                                 } else {
                                     result = String(item);
@@ -71,12 +76,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.map.filter.join vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.map.filter.join ',
@@ -104,6 +108,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.map.filter.join vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -123,7 +132,7 @@ globalThis.benchmarks.push(() => {
                             const item = mapPredicate(key, i);
 
                             if (filterPredicate(item)) {
-                                if (result) {
+                                if (result.length > 0) {
                                     result = result + separator + String(item);
                                 } else {
                                     result = String(item);
@@ -136,12 +145,12 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.map.filter.join vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.map.filter.join ',

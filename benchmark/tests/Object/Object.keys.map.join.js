@@ -1,5 +1,10 @@
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.map.join vs plugin',
+        subcategory: `big object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -54,7 +59,7 @@ globalThis.benchmarks.push(() => {
 
                     for (const key in obj) {
                         if (Object.hasOwnProperty.call(obj, key)) {
-                            if (result) {
+                            if (result.length > 0) {
                                 result = result + separator + String(mapPredicate(key, i));
                             } else {
                                 result = String(mapPredicate(key, i));
@@ -66,12 +71,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.map.join vs plugin',
-        subcategory: `big object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.map.join ',
@@ -93,6 +97,11 @@ globalThis.benchmarks.push(() => {
 
 globalThis.benchmarks.push(() => {
     return {
+        supercategory: 'Object',
+        category: 'Object.keys.map.join vs plugin',
+        subcategory: `small object`,
+        expected: 'plugin',
+
         options: {
             setup: () => {
                 let res = null;
@@ -109,7 +118,7 @@ globalThis.benchmarks.push(() => {
 
                     for (const key in obj) {
                         if (Object.hasOwnProperty.call(obj, key)) {
-                            if (result) {
+                            if (result.length > 0) {
                                 result = result + separator + String(mapPredicate(key, i));
                             } else {
                                 result = String(mapPredicate(key, i));
@@ -121,12 +130,11 @@ globalThis.benchmarks.push(() => {
                     return result;
                 }
             },
+            teardown: () => {
+                if (Math.random() > 1) console.log(res);
+            },
         },
 
-        supercategory: 'Object',
-        category: 'Object.keys.map.join vs plugin',
-        subcategory: `small object`,
-        expected: 'plugin',
         tests: [
             {
                 title: 'Object.keys.map.join ',
