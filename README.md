@@ -13,8 +13,8 @@ Testing is performed for distributed operating systems for two environments:
 
 The test results can be viewed at the links
 
-- [test results Node.js ](/node.html)
-- [browser testing results](/browsers.html)
+- [test results Node.js ](https://budarin.github.io/js-perf-tests/node.html)
+- [browser testing results](https://budarin.github.io/js-perf-tests/browsers.html)
 
 ## Basic conditions and rules for obtaining results
 
