@@ -7,8 +7,9 @@ globalThis.benchmarks.push(() => {
 
         options: {
             setup: () => {
-                res = '';
+                let res = '';
             },
+
             teardown: () => {
                 if (Math.random() > 1) console.log(res);
             },
@@ -111,6 +112,7 @@ globalThis.benchmarks.push(() => {
                 const s14 = "connect-src 'self';";
                 const s15 = "media-src 'self';";
             },
+
             teardown: () => {
                 if (Math.random() > 1) console.log(res);
             },

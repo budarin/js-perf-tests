@@ -9,6 +9,7 @@ globalThis.benchmarks.push(() => {
                 let res = [];
                 const foo = ['one', 'two', 'three'];
             }`),
+
             teardown: () => {
                 if (Math.random() > 1) console.log(res);
             },

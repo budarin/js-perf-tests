@@ -1,9 +1,17 @@
+function objectValuesFirstItemHelper(obj) {
+    for (var key in obj) {
+        return obj[key];
+    }
+
+    return;
+}
+
 [1000, 100, 50, 10, 3].forEach((arraySize) => {
     globalThis.benchmarks.push(() => ({
-        supercategory: 'Object',
-        category: 'Object expression with spread vs Object.assign',
+        supercategory: 'Array: chains of methods',
+        category: 'Object.values[0] vs plugin',
         subcategory: `${arraySize} props`,
-        expected: 'Object.assign',
+        expected: 'plugin',
 
         options: {
             setup: eval(`() => {
@@ -12,9 +20,10 @@
                 const obj = {};
 
                 for (let i = 0; i < ${arraySize}; i++) {
-                    obj[i + String(Math.random())] = Math.random()
+                    obj[String(Math.random())] = Math.random();
                 }
 
+                ${objectValuesFirstItemHelper.toString()}
             }`),
 
             teardown: () => {
@@ -24,15 +33,15 @@
 
         tests: [
             {
-                title: 'Object expression with spread ',
+                title: 'Object.values[0] ',
                 fn: function () {
-                    res = { ...obj, o: Math.random(), ...obj };
+                    res = Object.values(obj)[0];
                 },
             },
             {
-                title: 'Object.assign                 ',
+                title: 'plugin           ',
                 fn: function () {
-                    res = Object.assign({}, obj, { o: Math.random() }, obj);
+                    res = objectValuesFirstItemHelper(obj);
                 },
             },
         ],

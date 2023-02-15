@@ -2,7 +2,7 @@ let testsErrorCount = 0;
 
 const args = process.argv.slice(2);
 let host = '0.0.0.0';
-let port = 3000;
+let port = 3001;
 
 const hostPos = args.indexOf('--host');
 if (hostPos > -1) {

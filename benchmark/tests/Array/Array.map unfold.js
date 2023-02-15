@@ -7,9 +7,10 @@ globalThis.benchmarks.push(() => {
 
         options: {
             setup: () => {
-                res = '';
+                let res = '';
                 const predicate = (x) => x + 'Array';
             },
+
             teardown: () => {
                 if (Math.random() > 1) console.log(res);
             },
@@ -65,7 +66,7 @@ globalThis.benchmarks.push(() => {
 
         options: {
             setup: () => {
-                res = '';
+                let res = '';
                 const predicate = (x) => x + 'Array';
 
                 const s1 = "default-src 'none';";
@@ -74,6 +75,7 @@ globalThis.benchmarks.push(() => {
                 const s14 = "connect-src 'self';";
                 const s15 = "media-src 'self';";
             },
+
             teardown: () => {
                 if (Math.random() > 1) console.log(res);
             },

@@ -15,9 +15,14 @@
     "zx": "^7.1.1"
   },
   "scripts": {
-    "run-tests-collection-server": "node ./benchmark/benchmarksCollectionServer.js",
+    "run-node-server": "node ./benchmark/server.js node",
     "node-bencmark": "sh ./scripts/node-benchmark.sh",
+    "stop-node-server": "sh ./scripts/stop-node-server.sh",
+    "generate-node-heat-map": "node ./benchmark/tools/generateHeatMapHtml/index.mjs node",
+    "--------------": "",
+    "run-browsers-server": "node ./benchmark/server.js browsers",
     "browser-bencmark": "sh ./scripts/browser-benchmark.sh",
-    "stop-tests-collection-server": "sh ./scripts/stop-tests-collection-server.sh"
+    "stop-browsers-server": "sh ./scripts/stop-browsers-server.sh",
+    "generate-browsers-heat-map": "node ./benchmark/tools/generateHeatMapHtml/index.mjs browsers"
   }
 }

@@ -6,7 +6,7 @@ globalThis.benchmarks.push(() => {
 
         options: {
             setup: () => {
-                res = '';
+                let res = '';
                 const str =
                     "default-src 'none';" +
                     "base-uri 'none';" +
