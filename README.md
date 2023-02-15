@@ -1,6 +1,6 @@
 # Benchmarks
 
-🇷🇺 [На русском языке](/README.ru.md)
+🇷🇺 [На русском языке](/readme.ru.md)
 
 This project was created with the aim of testing javascript constructs that can potentially improve the productivity of mobile applications.
 
