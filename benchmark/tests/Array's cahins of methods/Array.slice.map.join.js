@@ -2,7 +2,7 @@ function arraySliceMapJoinHelper(arrayObject, start = 0, end = arrayObject.lengt
     var result = '';
 
     if (start > -1 && end > -1) {
-        result = String(mapPredicate(arrayObject[start], start));
+        result = mapPredicate(arrayObject[start], start) || '';
 
         var i = start;
         while (++i < end) {
