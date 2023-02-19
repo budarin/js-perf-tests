@@ -1,6 +1,6 @@
 function arrayJoinHelper(arrayObject, separator = ',') {
     var i = 0;
-    var result = arrayObject[0];
+    var result = arrayObject[0] || '';
     var len = arrayObject.length;
 
     while (++i < len) {
