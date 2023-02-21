@@ -1,33 +1,30 @@
-function arraySliceMapJoinHelper(
+function arraySliceEveryHelper(
   array,
   start = 0,
   end = array.length,
-  mapPredicate,
-  separator = ","
+  everyPredicate
 ) {
-  var result = "";
-
   if (start > -1 && end > -1) {
-    result = mapPredicate(arrayObject[start], start) || "";
-
-    var i = start;
+    var i = -1;
     while (++i < end) {
-      result = result + separator + String(mapPredicate(array[i], i - start));
+      if (everyPredicate(array[i], i) === false) {
+        return false;
+      }
     }
   } else {
     var len = array.length;
     var _start = start > -1 ? start : len + start;
     var _end = end >= 0 ? end : len + end;
-
-    result = String(mapPredicate(array[_start], _start));
-
     var i = _start;
+
     while (++i < _end) {
-      result = result + separator + String(mapPredicate(array[i], i - _start));
+      if (everyPredicate(array[i], i - _start) === false) {
+        return false;
+      }
     }
   }
 
-  return result;
+  return true;
 }
 
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
