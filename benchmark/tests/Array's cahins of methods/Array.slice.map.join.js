@@ -8,7 +8,7 @@ function arraySliceMapJoinHelper(
   var result = "";
 
   if (start > -1 && end > -1) {
-    result = String(mapPredicate(array[start], start));
+    result = mapPredicate(arrayObject[start], start) || "";
 
     var i = start;
     while (++i < end) {
