@@ -1,37 +1,37 @@
-function arrayFilterJoinHelper(arrayObject, filterPredicate, separator = ',') {
-    var i = -1;
-    var result = '';
-    var len = arrayObject.length;
+function arrayFilterJoinHelper(array, filterPredicate, separator = ",") {
+  var i = -1;
+  var result = "";
+  var len = array.length;
 
-    while (++i < len && result.length === 0) {
-        var item = arrayObject[i];
+  while (++i < len && result.length === 0) {
+    var item = array[i];
 
-        if (filterPredicate(item, i)) {
-            result = String(item);
-        }
+    if (filterPredicate(item, i)) {
+      result = String(item);
     }
+  }
 
-    i--;
-    while (++i < len) {
-        var item = arrayObject[i];
+  i--;
+  while (++i < len) {
+    var item = array[i];
 
-        if (filterPredicate(item, i)) {
-            result = result + separator + String(item);
-        }
+    if (filterPredicate(item, i)) {
+      result = result + separator + String(item);
     }
-    return result;
+  }
+  return result;
 }
 
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
-    globalThis.benchmarks.push(() => {
-        return {
-            supercategory: 'Array: chains of methods',
-            category: `Array.filter.join vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
+  globalThis.benchmarks.push(() => {
+    return {
+      supercategory: "Array: chains of methods",
+      category: `Array.filter.join vs plugin`,
+      subcategory: `array[${arraySize}]`,
+      expected: "plugin",
 
-            options: {
-                setup: eval(`() => {
+      options: {
+        setup: eval(`() => {
                     let res = '';
                     
                     const arr = new Array(${arraySize});
@@ -44,31 +44,31 @@ function arrayFilterJoinHelper(arrayObject, filterPredicate, separator = ',') {
                     
                 }`),
 
-                teardown: () => {
-                    if (Math.random() > 1) console.log(res);
-                },
-            },
+        teardown: () => {
+          if (Math.random() > 1) console.log(res);
+        },
+      },
 
-            tests: [
-                {
-                    title: 'Array.filter.join ',
-                    fn: function () {
-                        res = arr.filter((x) => x > 0).join(' ');
-                    },
-                },
-                {
-                    title: 'plugin            ',
-                    fn: function () {
-                        res = arrayFilterJoinHelper(
-                            arr,
-                            function (x, i) {
-                                return x > 0;
-                            },
-                            ' ',
-                        );
-                    },
-                },
-            ],
-        };
-    });
+      tests: [
+        {
+          title: "Array.filter.join ",
+          fn: function () {
+            res = arr.filter((x) => x > 0).join(" ");
+          },
+        },
+        {
+          title: "plugin            ",
+          fn: function () {
+            res = arrayFilterJoinHelper(
+              arr,
+              function (x, i) {
+                return x > 0;
+              },
+              " "
+            );
+          },
+        },
+      ],
+    };
+  });
 });

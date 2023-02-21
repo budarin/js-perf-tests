@@ -1,25 +1,25 @@
-function arrayMapJoinHelper(arrayObject, mapPredicate, separator = ',') {
-    var i = 0;
-    var len = arrayObject.length;
-    var result = String(mapPredicate(arrayObject[0], 0));
+function arrayMapJoinHelper(array, mapPredicate, separator = ",") {
+  var i = 0;
+  var len = array.length;
+  var result = String(mapPredicate(array[0], 0));
 
-    while (++i < len) {
-        result = result + separator + String(mapPredicate(arrayObject[i], i));
-    }
+  while (++i < len) {
+    result = result + separator + String(mapPredicate(array[i], i));
+  }
 
-    return result;
+  return result;
 }
 
 [10000, 1000, 100, 50, 10, 3].forEach((arraySize) => {
-    globalThis.benchmarks.push(() => {
-        return {
-            supercategory: 'Array: chains of methods',
-            category: `Array.map.join vs plugin`,
-            subcategory: `array[${arraySize}]`,
-            expected: 'plugin',
+  globalThis.benchmarks.push(() => {
+    return {
+      supercategory: "Array: chains of methods",
+      category: `Array.map.join vs plugin`,
+      subcategory: `array[${arraySize}]`,
+      expected: "plugin",
 
-            options: {
-                setup: eval(`() => {
+      options: {
+        setup: eval(`() => {
                     let res = '';
                     
                     const nums = new Array(${arraySize});
@@ -31,25 +31,25 @@ function arrayMapJoinHelper(arrayObject, mapPredicate, separator = ',') {
                     ${arrayMapJoinHelper.toString()}
                 }`),
 
-                teardown: () => {
-                    if (Math.random() > 1) console.log(res);
-                },
-            },
+        teardown: () => {
+          if (Math.random() > 1) console.log(res);
+        },
+      },
 
-            tests: [
-                {
-                    title: 'Array.map.join ',
-                    fn: function () {
-                        res = nums.map((x) => x).join(' ');
-                    },
-                },
-                {
-                    title: 'plugin         ',
-                    fn: function () {
-                        res = arrayMapJoinHelper(nums, (x) => x, ' ');
-                    },
-                },
-            ],
-        };
-    });
+      tests: [
+        {
+          title: "Array.map.join ",
+          fn: function () {
+            res = nums.map((x) => x).join(" ");
+          },
+        },
+        {
+          title: "plugin         ",
+          fn: function () {
+            res = arrayMapJoinHelper(nums, (x) => x, " ");
+          },
+        },
+      ],
+    };
+  });
 });
